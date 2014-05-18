@@ -226,8 +226,9 @@ git checkout-index -a -f --prefix=../zp_install_cache/
 cd ../zp_install_cache/
 
 # Lets pull in all the required updates etc.
-##rpm --import https://fedoraproject.org/static/0608B895.txt
-#cp etc/build/config_packs/centos_6_3/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo
+rpm --import https://fedoraproject.org/static/0608B895.txt
+cp ec/build/config_packs/centos_6_3/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo
+wget  --no-check-certificate https://raw.githubusercontent.com/zcworld/ZPX-installer-Beta/master/Centos/repos/iuscommunity.repo -O /etc/yum.repos.d/iuscommunity.repo
 
 # problem upgrade centos 6.2 with 6.5 pacquet deteted as repo qpid-cpp-client
 yum -y remove qpid-cpp-client
