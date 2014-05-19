@@ -236,9 +236,9 @@ chmod +x /etc/zpanel/panel/bin/setso
 cp -R /etc/zpanel/panel/etc/build/config_packs/ubuntu_12_04/. /etc/zpanel/configs
 ## FILES UPDATE ## ZCWORLD
 #ubuntu update on the apache / sql and the default Vhost for ZPX!
-wget https://raw.githubusercontent.com/zcworld/zpanelx/master/modules/apache_admin/hooks/OnDaemonRun.hook.php_u14 -O /etc/zpanel/panel/modules/apache_admin/hooks/OnDaemonRun.hook.php
-wget https://raw.githubusercontent.com/zcworld/zpanelx/master/etc/build/config_packs/ubuntu_12_04/zpanelx-install/sql/zpanel_core.sql -O /etc/zpanel/configs/zpanelx-install/sql/zpanel_core.sql
-wget https://github.com/zcworld/zpanelx/raw/master/etc/build/config_packs/ubuntu_12_04/apache/httpd.conf -O /etc/zpanel/configs/apache/httpd.conf
+wget --no-check-certificate https://raw.githubusercontent.com/zcworld/zpanelx/master/modules/apache_admin/hooks/OnDaemonRun.hook.php_u14 -O /etc/zpanel/panel/modules/apache_admin/hooks/OnDaemonRun.hook.php
+wget --no-check-certificate https://raw.githubusercontent.com/zcworld/zpanelx/master/etc/build/config_packs/ubuntu_12_04/zpanelx-install/sql/zpanel_core.sql -O /etc/zpanel/configs/zpanelx-install/sql/zpanel_core.sql
+wget --no-check-certificate https://github.com/zcworld/zpanelx/raw/master/etc/build/config_packs/ubuntu_12_04/apache/httpd.conf -O /etc/zpanel/configs/apache/httpd.conf
 # set password after test connexion
 cc -o /etc/zpanel/panel/bin/zsudo /etc/zpanel/configs/bin/zsudo.c
 sudo chown root /etc/zpanel/panel/bin/zsudo
