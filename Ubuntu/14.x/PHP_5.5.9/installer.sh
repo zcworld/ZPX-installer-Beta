@@ -155,21 +155,27 @@ echo -e ""
 dpkg --get-selections
 
 # We need to update the enabled Aptitude repositories
-echo -ne "\nUpdating Aptitude Repos: " >/dev/tty
+echo -ne "\nUpdating Aptitude Repos : " >/dev/tty
 
 mkdir -p "/etc/apt/sources.list.d.save"
         cp -R "/etc/apt/sources.list.d/*" "/etc/apt/sources.list.d.save" &> /dev/null
         rm -rf "/etc/apt/sources.list/*"
         cp "/etc/apt/sources.list" "/etc/apt/sources.list.save"
 cat > /etc/apt/sources.list <<EOF
-#Dépots main restricted
+#Dï¿½pots main restricted
 
 deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
 deb http://archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
 deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
 
 EOF
-
+apt-get -y install software-properties-common
+echo "add apache2 and php5 ppa"
+add-apt-repository -y ppa:ondrej/php5 &> /dev/null
+sleep 10
+echo "add php5-suhosin ppa"
+add-apt-repository -y ppa:andykimpe/php5-suhosin &> /dev/null
+sleep 10
 apt-get update
 
 
@@ -193,7 +199,7 @@ apt-get upgrade -yqq
 # We disable the DPKG prompts before we run the software install to enable fully automated install.
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get install -qqy at mysql-server mysql-server apache2 libapache2-mod-php5 libapache2-mod-bw php5-common php5-cli php5-mysql php5-gd php5-mcrypt php5-curl php-pear php5-imap php5-xmlrpc php5-xsl zip webalizer build-essential bash-completion dovecot-mysql dovecot-imapd dovecot-pop3d dovecot-common dovecot-managesieved dovecot-lmtpd postfix postfix-mysql libsasl2-modules-sql libsasl2-modules proftpd-mod-mysql bind9 bind9utils
+apt-get install -qqy at mysql-server mysql-server apache2 libapache2-mod-php5 libapache2-mod-bw php5-common php5-cli php5-mysql php5-gd php5-mcrypt php5-curl php-pear php5-imap php5-xmlrpc php5-xsl zip webalizer build-essential bash-completion dovecot-mysql dovecot-imapd dovecot-pop3d dovecot-common dovecot-managesieved dovecot-lmtpd postfix postfix-mysql libsasl2-modules-sql libsasl2-modules proftpd-mod-mysql bind9 bind9utils php5-suhosin
 
 # Generation of random passwords
 password=`passwordgen`;
@@ -243,9 +249,6 @@ wget --no-check-certificate https://github.com/zcworld/zpanelx/raw/master/etc/bu
 cc -o /etc/zpanel/panel/bin/zsudo /etc/zpanel/configs/bin/zsudo.c
 sudo chown root /etc/zpanel/panel/bin/zsudo
 chmod +s /etc/zpanel/panel/bin/zsudo
-mkdir -p /usr/lib/php5/extensions
-wget --no-check-certificate https://raw.githubusercontent.com/zcworld/ZPX-installer-Beta/master/Ubuntu/14.x/PHP_5.5.9/files/suhosin.ini -O /etc/php5/apache2/conf.d/suhosin.ini 
-wget --no-check-certificate https://raw.githubusercontent.com/zcworld/ZPX-installer-Beta/master/Ubuntu/14.x/PHP_5.5.9/files/suhosin.so -O /usr/lib/php5/extensions/suhosin.so
 
 
 # MySQL specific installation tasks...
