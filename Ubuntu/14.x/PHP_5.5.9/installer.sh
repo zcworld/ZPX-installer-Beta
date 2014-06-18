@@ -177,6 +177,7 @@ echo "add php5-suhosin ppa"
 add-apt-repository -y ppa:andykimpe/php5-suhosin &> /dev/null
 sleep 10
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 3B4FE6ACC0B21F32
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 4F4EA0AAE5267A6C
 apt-get update
 
 
