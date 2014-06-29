@@ -245,7 +245,7 @@ cp -R /etc/zpanel/panel/etc/build/config_packs/ubuntu_12_04/. /etc/zpanel/config
 ## FILES UPDATE ## ZCWORLD
 #ubuntu update on the apache / sql and the default Vhost for ZPX!
 rm -f /etc/zpanel/panel/modules/apache_admin/hooks/OnDaemonRun.hook.php /etc/zpanel/configs/zpanelx-install/sql/zpanel_core.sql /etc/zpanel/configs/apache/httpd.conf
-wget --no-check-certificate https://raw.githubusercontent.com/zcworld/zpanelx/master/modules/apache_admin/hooks/OnDaemonRun.hook.php_u14 -O /etc/zpanel/panel/modules/apache_admin/hooks/OnDaemonRun.hook.php
+wget --no-check-certificate https://raw.githubusercontent.com/andykimpe/zpanelx/master/modules/apache_admin/hooks/OnDaemonRun.hook.php_u14 -O /etc/zpanel/panel/modules/apache_admin/hooks/OnDaemonRun.hook.php
 wget --no-check-certificate https://raw.githubusercontent.com/zcworld/zpanelx/master/etc/build/config_packs/ubuntu_12_04/zpanelx-install/sql/zpanel_core.sql -O /etc/zpanel/configs/zpanelx-install/sql/zpanel_core.sql
 # Set server tokens (security??)
 #ServerTokens Major
@@ -351,8 +351,8 @@ serverhost=`hostname`
 
 # Apache HTTPD specific installation tasks...
 if ! grep -q "Include /etc/zpanel/configs/apache/httpd.conf" /etc/apache2/apache2.conf; then echo "Include /etc/zpanel/configs/apache/httpd.conf" >> /etc/apache2/apache2.conf; fi
-sed -i 's|DocumentRoot "/var/www/html"|DocumentRoot "/etc/zpanel/panel"|' /etc/apache2/apache2.conf
-sed -i 's|Include sites-enabled/||' /etc/apache2/apache2.conf
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /etc/zpanel/panel|' /etc/apache2/sites-enabled/000-default.conf
+sed -i 's|<Directory /var/www/>|<Directory /etc/zpanel/panel>|' /etc/apache2/apache2.conf
 chown -R www-data:www-data /var/zpanel/temp/
 if ! grep -q "127.0.0.1 "$fqdn /etc/hosts; then echo "127.0.0.1 "$fqdn >> /etc/hosts; fi
 if ! grep -q "apache ALL=NOPASSWD: /etc/zpanel/panel/bin/zsudo" /etc/sudoers; then echo "apache ALL=NOPASSWD: /etc/zpanel/panel/bin/zsudo" >> /etc/sudoers; fi
