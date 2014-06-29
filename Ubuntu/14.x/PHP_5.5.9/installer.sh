@@ -5,7 +5,7 @@
 
 ZPX_VERSION=10.1.1
 
-# UNOfficial ZPanel Automated Installation Script
+# Official ZPanel Automated Installation Script
 # =============================================
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ passwordgen() {
 # Display the 'welcome' splash/user warning info..
 echo -e ""
 echo -e "##############################################################"
-echo -e "# UNOfficial ZPanel Automated Installation Script BETA 1     #"
+echo -e "# Official ZPanel Automated Installation Script BETA 2       #"
 echo -e "# Welcome to the Official ZPanelX Installer for Ubuntu       #"
 echo -e "# Server 14.04.x LTS                                         #"
 echo -e "#                                                            #"
