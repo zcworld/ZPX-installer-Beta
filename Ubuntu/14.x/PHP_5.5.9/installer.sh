@@ -61,7 +61,7 @@ echo "Detected : $OS  $VER  $BITS"
 if [ "$OS" = "Ubuntu" ] && [ "$VER" = "14.04" ]; then
   echo "Ok."
 else
-  echo "Sorry, this installer only supports the installation of ZPanel on Ubuntu 12.04."
+  echo "Sorry, this installer only supports the installation of ZPanel on Ubuntu 14.04."
   exit 1;
 fi
 
@@ -162,7 +162,7 @@ mkdir -p "/etc/apt/sources.list.d.save"
         rm -rf "/etc/apt/sources.list/*"
         cp "/etc/apt/sources.list" "/etc/apt/sources.list.save"
 cat > /etc/apt/sources.list <<EOF
-#Dépots main restricted
+#Dï¿½pots main restricted
 
 deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
 deb http://archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
